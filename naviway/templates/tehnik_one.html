@@ -1,0 +1,44 @@
+{% extends 'base-cont.html' %}
+{% load static %}
+
+{% block title %} Штурман {% endblock %}
+
+{% block content %}
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              <h6 class="fw-bold py-3 mb-4"> {{ tehnik.name }}</h6>
+
+              <!-- Content types -->
+              <div class="row mb-5">
+
+                <div class=col-lg-9 mb-4">
+                  <div class="card mb-4">
+                    <div class="card-body">
+                      <h5 class="card-title">{{ tehnik.name }}</h5>
+                      <div class="card-subtitle text-muted mb-3">{{ tehnik.istochnik }}</div>
+                      <p class="card-text">
+                        {{ tehnik.anotacia|safe }}
+                      </p>
+                      <hr>
+                      <p class="card-text">
+                        {{ tehnik.texnika|safe }}
+                      </p>
+                      <hr>
+                      <p class="card-text">
+                        {{ tehnik.koment_spec|safe }}
+                      </p>
+                     <ul class="list-group list-group-flush">
+                      <li class="list-group-item">{{ tehnik.id_texnik }}</li>
+                      <li class="list-group-item">{{ tehnik.age }}</li>
+                      <li class="list-group-item">{{ tehnik.sex }}</li>
+                      <li class="list-group-item">{{ tehnik.id_podxod }}</li>
+                      <li class="list-group-item">{{ tehnik.kol_people }}</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+            </div>
+            <!-- / Content -->
+{% endblock %}

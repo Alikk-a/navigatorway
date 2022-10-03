@@ -1,0 +1,55 @@
+{% extends 'base-cont.html' %}
+{% load static %}
+
+{% block title %} Штурман {% endblock %}
+
+{% block content %}
+<!-- Content -->
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-md mb-4 mb-md-0">
+                          <small class="text-light fw-semibold">Basic Accordion</small>
+                          <div class="accordion mt-3" id="accordionExample">
+                            {% for tehtarget in tehtargets.all %}
+                                <div class="card accordion-item">
+                                  <h5 class="accordion-header" id="h_{{ tehtarget.id }}">
+                                  <div style="float: left; width: 70%; padding: 5px">
+                                      <a href="{% url 'tehnik' tehtarget.id %}" class="menu-link">{{ tehtarget.cel_texniki }}</a>
+                                  </div>
+                                    <div style="float: left; width: 30%;">
+                                    <button
+                                      type="button"
+                                      class="accordion-button"
+                                      data-bs-toggle="collapse"
+                                      data-bs-target="#o_{{ tehtarget.id }}"
+                                      aria-expanded="true"
+                                      aria-controls="o_{{ tehtarget.id }}"
+                                    >
+                                    </button>
+                                    </div>
+                                  </h5>
+                                  <div
+                                    id="o_{{ tehtarget.id }}"
+                                    class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionExample"
+                                  >
+                                    <div class="accordion-body">
+                                        <p>{{ tehtarget.koment_cel|safe }}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- / Content -->
+{% endblock %}

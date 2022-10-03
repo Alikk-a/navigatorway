@@ -1,0 +1,62 @@
+{% extends 'base-cont.html' %}
+{% load static %}
+
+{% block title %} Штурман {% endblock %}
+
+{% block content %}
+            <!-- Content -->
+
+            <div class="container-xxl flex-grow-1 container-p-y">
+              {% for tehtarget in tehtargets %}
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Список направлений /</span> {{ tehtarget.cel_texniki }}</h4>
+              <div class="row">
+                <div class="col-md-12 mb-4">
+                  <div class="card">
+                    <h2 class="card-header">{{ tehtarget.cel_texniki }}</h2>
+                    <div class="card-body">
+                      <div class="">
+                        <div class="divider-text">
+                          <hr>
+                          <p>{{ tehtarget.koment_cel|safe }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+
+              <h5 class="pb-1 mb-4">Все техники направления </h5>
+              <div class="row mb-5">
+                {% for tehnik in tehniks %}
+                <div class="col-md-6 col-lg-6">
+                  <div class="card mb-4">
+                    <div class="card-body">
+                      <h6 class="card-title"><a href="{% url 'tehnik_one' tehnik.id %}" class="">Направление: {{ tehnik.cel_texniki }}</a></h6>
+                      <h5 class="card-title"><a href="{% url 'tehnik_one' tehnik.id %}" class="">{{ tehnik.name }}</a></h5>
+                      <div class="card-subtitle text-muted mb-3">{{ tehnik.istochnik }}</div>
+                      <p class="card-text">
+                        {{ tehnik.anotacia|safe }}
+                      </p>
+                      <hr>
+                      <p class="card-text">
+                        {{ tehnik.texnika|safe }}
+                      </p>
+                      <hr>
+                      <p class="card-text">
+                        {{ tehnik.koment_spec|safe }}
+                      </p>
+                     <ul class="list-group list-group-flush">
+                      <li class="list-group-item">{{ tehnik.id_texnik }}</li>
+                      <li class="list-group-item">{{ tehnik.age }}</li>
+                      <li class="list-group-item">{{ tehnik.sex }}</li>
+                      <li class="list-group-item">{{ tehnik.id_podxod }}</li>
+                      <li class="list-group-item">{{ tehnik.kol_people }}</li>
+                      </ul>
+
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+            </div>
+            <!-- / Content -->
+{% endblock %}
