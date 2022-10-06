@@ -38,6 +38,50 @@ class Texniki(models.Model):
         verbose_name_plural ='Техники'
         ordering = ('name',)
 
+    def agehuman(self):
+        if self.age == "adult":
+            agehuman = "для взрослых"
+        elif self.age == "school_old":
+            agehuman = "для школьников и старше"
+        elif self.age == "preschool":
+            agehuman = "для дошкольников"
+        elif self.age == "school_teens":
+            agehuman = "для школьников и подростков"
+        elif self.age == "teens":
+            agehuman = "для подростков  и старше"
+        elif self.age == "teens_old":
+            agehuman = "для подростков"
+        elif self.age == "preschool_school":
+            agehuman = "для дошкольников и школьников"
+        elif self.age == "school":
+            agehuman = "для школьников"
+        else:
+            agehuman = "для любого возраста"
+        return agehuman
+
+    def peoplehuman(self):
+        if self.kol_people == "bin":
+            peoplehuman = "в паре"
+        elif self.kol_people == "group":
+            peoplehuman = "в группе"
+        elif self.kol_people == "ind":
+            peoplehuman = "индивидуально"
+        else:
+            peoplehuman = ""
+        return peoplehuman
+
+    def sexhuman(self):
+        if self.sex == "w":
+            sexhuman = "для женщин"
+        elif self.sex == "m":
+            sexhuman = "для мужчин"
+        else:
+            sexhuman = "для любого пола"
+        return sexhuman
+
+    def cutanotacia(self):
+        return self.anotacia[:210]
+
     def __str__(self):
         return self.name
 

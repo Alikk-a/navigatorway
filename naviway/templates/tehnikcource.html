@@ -7,17 +7,17 @@
             <!-- Content -->
 
             <div class="container-xxl flex-grow-1 container-p-y">
-              {% for tehtarget in tehtargets %}
-              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><a href="{% url 'tehtarget' %}"><b>Список направлений </b></a>/</span> {{ tehtarget.cel_texniki }}</h4>
+              {% for cursceteh in curscetehs %}
+              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><a href="{% url 'cources' %}"><b>Список курсов</b></a> /</span> {{ cursceteh.name_cource }}</h4>
               <div class="row">
                 <div class="col-md-12 mb-4">
                   <div class="card">
-                    <h2 class="card-header">{{ tehtarget.cel_texniki }}</h2>
+                    <h2 class="card-header">{{ cursceteh.name_cource }}</h2>
                     <div class="card-body">
                       <div class="">
                         <div class="divider-text">
                           <hr>
-                          <p>{{ tehtarget.koment_cel|safe }}</p>
+                          <p>{{ cursceteh.koment_cource|safe }}</p>
                         </div>
                       </div>
                     </div>
@@ -25,7 +25,7 @@
                 </div>
               {% endfor %}
 
-              <h5 class="pb-1 mb-4">Все техники направления </h5>
+              <h5 class="pb-1 mb-4">Все техники курса </h5>
               <div class="row mb-5">
                 {% for tehnik in tehniks %}
                 <div class="col-md-6 col-lg-6">

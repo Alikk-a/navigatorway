@@ -1,0 +1,68 @@
+{% extends 'base-cont.html' %}
+{% load static %}
+
+{% block title %} Штурман {% endblock %}
+
+{% block content %}
+<!-- Content -->
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <h3 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><b>Техники в последовательных авторских Курсах</b></span></h3>
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="divider-text">
+                        <p>Авторские курсы практик, состоящие из последовательного ряда упражнений. </p>
+                        <p>Клик по стрелке справа от названия курса раскрывает его описание.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 mb-4">
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="col-md mb-4 mb-md-0">
+                          <small class="text-light fw-semibold">Последовательные курсы психотеник (клик по стрелке справа - описание направления)</small>
+                          <div class="accordion mt-3" id="accordionExample">
+                            {% for cource in cources.all %}
+                                <div class="card accordion-item">
+                                  <h5 class="accordion-header" id="h_{{ cource.id }}">
+                                  <div style="float: left; width: 70%; padding: 5px">
+                                      <a href="{% url 'tehnikcource' cource.id %}" class="menu-link">{{ cource.name_cource }}</a>
+                                  </div>
+                                    <div style="float: left; width: 30%;">
+                                    <button
+                                      type="button"
+                                      class="accordion-button"
+                                      data-bs-toggle="collapse"
+                                      data-bs-target="#o_{{ cource.id }}"
+                                      aria-expanded="true"
+                                      aria-controls="o_{{ cource.id }}"
+                                    >
+                                    </button>
+                                    </div>
+                                  </h5>
+                                  <div
+                                    id="o_{{ cource.id }}"
+                                    class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionExample"
+                                  >
+                                    <div class="accordion-body">
+                                        <p>{{ cource.koment_cource|safe }}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                            {% endfor %}
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- / Content -->
+{% endblock %}
