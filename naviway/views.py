@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Page, Texniki, Targetteh, Podhod, Targ, Cursceteh, Cursce
 # from django.db.models.functions import TruncDay, TruncHour
 import requests
+# from asgiref.sync import sync_to_async
 # import psycopg2
 
 def home(request):
@@ -16,6 +17,7 @@ def home(request):
 
 def arh(request):
     pages = Page.objects.filter(pageparid=89).order_by('menuname')
+    print(pages)
     menus1 = Page.objects.filter(pageparid=5).order_by('sort')
     menus2 = Page.objects.filter(pageparid=7).order_by('sort')
     menus3 = Page.objects.filter(pageparid=11).order_by('sort')
@@ -30,7 +32,9 @@ def content(request, pageurl):
     menus3 = Page.objects.filter(pageparid=11).order_by('sort')
     menus4 = Page.objects.filter(pageparid=13).order_by('sort')
     menus5 = Page.objects.filter(pageparid=3).order_by('sort')
-    return render(request, 'content.html', {'pages': pages, 'menus1': menus1, 'menus2': menus2, 'menus3': menus3, 'menus4': menus4, 'menus5': menus5})
+    menus6 = Page.objects.filter(pageparid=42).order_by('sort')
+    menus7 = Page.objects.filter(pageparid=52).order_by('sort')
+    return render(request, 'content.html', {'pages': pages, 'menus1': menus1, 'menus2': menus2, 'menus3': menus3, 'menus4': menus4, 'menus5': menus5, 'menus6': menus6, 'menus7': menus7})
 
 def tehtarget(request):
     tehtargets = Targ.objects.all().order_by('cel_texniki')
@@ -96,4 +100,4 @@ def cardbasic(request):
     menus3 = Page.objects.filter(pageparid=11).order_by('sort')
     menus4 = Page.objects.filter(pageparid=13).order_by('sort')
     menus5 = Page.objects.filter(pageparid=3).order_by('sort')
-    return render(request, 'cardbasic.html', {'menus1': menus1, 'menus2': menus2, 'menus3': menus3, 'menus4': menus4, 'menus5': menus5})
+    return render(request, 'cards-basic.html', {'menus1': menus1, 'menus2': menus2, 'menus3': menus3, 'menus4': menus4, 'menus5': menus5})

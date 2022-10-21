@@ -1,7 +1,6 @@
 {% extends 'base-cont.html' %}
 {% load static %}
 
-{% block title %} Штурман {% endblock %}
 
 {% block content %}
             <!-- Content -->
@@ -11,24 +10,25 @@
               <!-- Content types -->
               <div class="row mb-5">
                       <h6 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><b>
-                        <a href="#" onclick="history.back();">Вернуться назад</a> -
-                        <a href="{% url 'tehtarget' %}">К списку направлений </a> -
-                        <a href="{% url 'cources' %}"><b>К списку курсов</b></a>
-                      </span></b></h6>
+                        <ul>
+                            <li><a href="#" onclick="history.back();">Вернуться назад</a></li>
+                            <li><a href="{% url 'tehtarget' %}">К списку направлений </a><br></li>
+                            <li><a href="{% url 'cources' %}">К списку курсов</a></li>
+                        </ul>
+                        </b></span></h6>
 
                 <div class="col-lg-9 mb-4">
                   <div class="card mb-4">
                     <div class="card-body">
 
                       <h4 class="card-title">{{ tehnik.name }}</h4>
-                      <div class="card-subtitle mb-3"><i>Методика техники: </i> <b>{{ tehnik.podhod }}</b>
-                        <div style="float: right; padding: 3px">{{ tehnik.istochnik }}</div>
-                      </div>
-                        <ul class="list-group list-group-flush">
+                      <div class="card-subtitle mb-3"><i>Методика техники: </i> <b>{{ tehnik.podhod }}</b></div>
+                        <div style="padding: 3px">{{ tehnik.istochnik }}</div>
+                        <div><ul class="list-group list-group-flush">
                             <li class="list-group-item"><i>Возрасттные ограничения -</i> <b>{{ tehnik.agehuman }}</b></li>
                             <li class="list-group-item"><i>Предназначена -</i> <b>{{ tehnik.sexhuman }}</b></li>
                             <li class="list-group-item"><i>Техика выполняется -</i> <b>{{ tehnik.peoplehuman }}</b></li>
-                        </ul>
+                        </ul></div>
 
                       <hr>
                         <p class="card-text">
