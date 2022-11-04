@@ -79,9 +79,9 @@
           <div class="app-brand demo">
             <a href="{% url 'home' %}" class="app-brand-link">
               <span class="app-brand-logo demo">
-                <img src = "../media/images/logo_navi.png\" width="47">
+                <img src = "{% static 'logo_navi.png' %}" width="47">
               </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-3">Navigator</span>
+              <span class="app-brand-text demo menu-text ms-3">навигация</span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -89,10 +89,10 @@
             </a>
           </div>
 
-          <div class="menu-inner-shadow"></div>
+<!--          <div class="menu-inner-shadow"></div>-->
 
           <ul class="menu-inner py-1">
-            <!-- Dashboard -->
+
             <li class="menu-item
                     {% if request.path == '/' %}
                        active
@@ -115,8 +115,6 @@
                 </li>
               {% endfor %}
 
-
-            <!-- Layouts -->
             <li id="5" class="menu-item">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bxs-binoculars"></i>
@@ -124,61 +122,10 @@
               </a>
 
               <ul class="menu-sub">
-              {% for page in menus1.all %}
-                <li class="menu-item
-                    {% if page.pagename in request.path %}
-                       active
-                    {% endif %}
-                    ">
-                  <a href="{% url 'content' page.pagename %}" class="menu-link">
-                    <div data-i18n="">{{ page.menuname }}</div>
-                  </a>
-                </li>
-              {% endfor %}
+                {% include 'includes/menu_123.html' %}
               </ul>
             </li>
-            <li id="7" class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bxs-wrench"></i>
-                <div data-i18n="praktic">Практика Пути</div>
-              </a>
-
-              <ul class="menu-sub">
-              {% for page in menus2.all %}
-                <li class="menu-item
-                    {% if page.pagename in request.path %}
-                       active
-                    {% endif %}
-                    ">
-                  <a href="{% url 'content' page.pagename %}" class="menu-link">
-                    <div data-i18n="">{{ page.menuname }}</div>
-                  </a>
-                </li>
-              {% endfor %}
-              </ul>
-            </li>
-            <li id="11" class="menu-item">
-              <a href="javascript:void(0);" class="menu-link menu-toggle">
-                <i class="menu-icon tf-icons bx bxs-magnet"></i>
-                <div data-i18n="different">Всячина</div>
-              </a>
-
-              <ul class="menu-sub">
-              {% for page in menus3.all %}
-
-                <li class="menu-item
-                    {% if page.pagename in request.path %}
-                       active
-                    {% endif %}
-                    ">
-                  <a href="{% url 'content' page.pagename %}" class="menu-link">
-                    <div data-i18n="">{{ page.menuname }}</div>
-                  </a>
-                </li>
-              {% endfor %}
-              </ul>
-            </li>
-
+              <!-- меню Контакты-->
               {% for page in menus4.all %}
                 <li class="menu-item
                     {% if page.pagename in request.path %}
@@ -190,6 +137,7 @@
                   </a>
                 </li>
               {% endfor %}
+
             <li class="menu-item
                     {% if request.path == '/tehtarget' %}
                        active
@@ -260,12 +208,6 @@
              <img src = "">
           <!-- Navbar -->
           <!-- Кнопка для мобильных - боковое меню -->
-  <style>
-   nav1 {
-    background: url(../media/images/rose.png) no-repeat; /* Добавляем фон */
-    background-size: contain; /* Масштабируем фон */
-   }
-  </style>
           <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
             <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
               <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
@@ -274,7 +216,7 @@
             </div>
           <!-- END Кнопка для мобильных - боковое меню -->
             <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-<img src="../media/images/rose.png" height="50px" alt="">
+                <img src="{% static 'navi_top.png' %}" height="50px" alt="">
 
               <!-- Search -->
 <!--              <div class="navbar-nav align-items-center">-->

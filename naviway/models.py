@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 class Page(models.Model):
@@ -10,16 +11,15 @@ class Page(models.Model):
     pagekeywords = models.CharField(max_length=650, blank=True, verbose_name='keywords страницы', null=True)
     pagedescription = models.CharField(max_length=1000, blank=True, verbose_name='Метатег description страницы', null=True)
     pagecontent = models.TextField(blank=True, verbose_name='Контент страницы', null=True)
-    sort = models.IntegerField(blank=True, verbose_name='сортировка', null=True)
+    sort = models.IntegerField(blank=True, verbose_name='сортировка', null=True, validators=[MinValueValidator(0), MaxValueValidator(300)])
     pageimg = models.CharField(max_length=255, blank=True, verbose_name='URL страницы', null=True)
 
     class Meta:
         verbose_name ='Контентные страницы'
         verbose_name_plural ='основные страницы'
-        ordering = ('menuname',)
 
     def __str__(self):
-        return self.menuname
+        return f'{self.menuname} {self.pageid}'
 
 class Texniki(models.Model):
     id_texnik = models.IntegerField(blank=True, verbose_name='Техника - номер', null=True)
@@ -90,8 +90,8 @@ class Targ(models.Model):
     koment_cel = models.TextField(blank=True, verbose_name='описание направления', null=True)
 
     class Meta:
-        verbose_name ='Цели описалово'
-        verbose_name_plural ='Цели описалово'
+        verbose_name ='Направления техник'
+        verbose_name_plural ='Направления техник'
 
     def __str__(self):
         return self.cel_texniki
@@ -101,8 +101,8 @@ class Targetteh(models.Model):
     id_cel = models.IntegerField(blank=True, verbose_name='цель техники', null=True)
 
     class Meta:
-        verbose_name ='Цели распределение'
-        verbose_name_plural ='Цели распределение'
+        verbose_name ='Связь Направлений и техник'
+        verbose_name_plural ='Связь Направлений и техник'
 
     def __str__(self):
         return self.id_cel
@@ -113,8 +113,8 @@ class Cursceteh(models.Model):
     n_por = models.IntegerField(blank=True, verbose_name='Порядок в курсе', null=True)
 
     class Meta:
-        verbose_name ='Курсы Техник'
-        verbose_name_plural ='Курсы Техник'
+        verbose_name ='Связь Курсов и техник'
+        verbose_name_plural ='Связь Курсов и техник'
 
     def __str__(self):
         return self.id_cource
