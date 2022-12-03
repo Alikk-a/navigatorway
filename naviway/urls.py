@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
+from django.views.generic.base import TemplateView
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -26,21 +27,12 @@ urlpatterns = [
     path('cources/', views.cources, name='cources'),
     path('tehnik/<int:id_texnik>/', views.tehnik_one, name='tehnik_one'),
     path('cardbasic/', views.cardbasic, name='cardbasic'),
-    # path('change_activ2/', views.change_activ2, name='change_activ2'),
-    # path('pos/<int:post_id>/', views.specific_post, name='specific_post'),
-    # path('change_ex/', views.change_ex, name='change_ex'),
-    # path('change_adr/', views.change_adr, name='change_adr'),
-    # path('addresses.html', views.addresses, name='addresses.html'),
-    # path('activity.html', views.activity, name='activity.html'),
-    # path('profloss.html', views.profloss, name='profloss.html'),
-    # path('exchange.html', views.exchange, name='exchange.html'),
-    # path('bigtrans.html', views.bigtrans, name='bigtrans.html'),
-    # path('bigtrans_filter.html', views.bigtrans_filter, name='bigtrans_filter.html'),
-    # path('bigtrans_agr.html', views.bigtrans_agr, name='bigtrans_agr.html'),
-    # path('bigtrans_full.html', views.bigtrans_full, name='bigtrans_full.html'),
-    # path('bigtransavg_btc', views.bigtrans_szn, name='bigtransavg_btc'),
-    # path('bigtransavg_eth', views.bigtranseth_szn, name='bigtransavg_eth'),
-    # path('bigtrans_sum.html', views.bigtrans_sum, name='bigtrans_sum.html'),
-    # path('o120522.html', views.o120522, name='o120522.html'),
+    path('registr/', views.registr, name='registr'),
+    path('prof/', views.prof, name='prof'),
+    path('sitemap.xml', TemplateView.as_view(template_name="sitemap.xml", content_type="text/plain")),
+    path(
+        "robots.txt",
+        TemplateView.as_view(template_name="robots.txt", content_type="text/plain"),
+    ),
 
 ]

@@ -1,0 +1,1 @@
+User-agent: YandexUser-agent: GooglebotUser-agent: *Sitemap: https://navigatorway.com/sitemap.xml

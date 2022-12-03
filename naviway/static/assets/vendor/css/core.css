@@ -15646,6 +15646,7 @@ html:not(.layout-footer-fixed) .content-wrapper {
   line-height: 1;
   min-height: 1px;
   align-items: center;
+  justify-content: center;
 }
 
 .app-brand-link {

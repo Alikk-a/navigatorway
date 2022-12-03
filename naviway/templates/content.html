@@ -2,38 +2,39 @@
 {% load static %}
 
 {% block content %}
-    <!-- Content -->
-      {% for page in pages.all %}
-            <div class="container-xxl flex-grow-1 container-p-y">
-<!--              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Extended UI /</span> Text Divider</h4>-->
-                <div class="row">
-                <div class="col-md-12 mb-4">
-                    <h6 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><b>
-                        <ul>
-                            <li><a href="#" onclick="history.back();">Вернуться назад</a></li>
-                        </ul>
-                    </b></span></h6>
-                  <div class="card">
-                    <h2 class="card-header">{{ page.pagetitle }}</h2>
-                    <div class="card-body">
-                      <div class="">
+<!-- Content -->
+{% for page in pages.all %}
+<div class="container-xxl flex-grow-1 container-p-y">
+    <!--              <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Extended UI /</span> Text Divider</h4>-->
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <!--                    <h6 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><b>-->
+            <!--                        <ul>-->
+            <!--                            <li><a href="#" onclick="history.back();">Вернуться назад</a></li>-->
+            <!--                        </ul>-->
+            <!--                    </b></span></h6>-->
+            <div class="card">
+                <h2 class="card-header">{{ page.pagetitle }}</h2>
+                <div class="card-body">
+                    <div class="">
                         <div class="divider-text">
-                          <hr>
-                          <p>{{ page.pagecontent|safe }}</p>
+                            <hr>
+                            <p>{{ page.pagecontent|safe }}</p>
                         </div>
-                      </div>
                     </div>
-                  </div>
                 </div>
-            <script>
+            </div>
+        </div>
+        <script>
               document.addEventListener("DOMContentLoaded", () => {
                   var ob = document.getElementById({{ page.pageparid }});
                   ob.classList.add("open");
                   ob.classList.add("active");
               });
-            </script>
-          </div>
-        </div>
-      {% endfor %}
-    <!-- / Content -->
+
+        </script>
+    </div>
+</div>
+{% endfor %}
+<!-- / Content -->
 {% endblock %}

@@ -1,9 +1,5 @@
               {% for page in menus1.all %}
-                <li class="menu-item
-                    {% if page.pagename in request.path %}
-                       active
-                    {% endif %}
-                    ">
+                <li class="menu-item {% if page.pagename in request.path %} active {% endif %}">
                   <a href="{% url 'content' page.pagename %}" class="menu-link">
                     <div data-i18n="">{{ page.menuname }}</div>
                   </a>
@@ -19,11 +15,7 @@
 
               <ul class="menu-sub">
               {% for page in menus2 %}
-                <li class="menu-item
-                    {% if page.pagename in request.path %}
-                       active
-                    {% endif %}
-                    ">
+                <li class="menu-item {% if page.pagename in request.path %} active {% endif %}">
                   <a href="{% url 'content' page.pagename %}" class="menu-link">
                     <div data-i18n="">{{ page.menuname }}</div>
                   </a>
@@ -39,12 +31,7 @@
 
               <ul class="menu-sub">
               {% for page in menus3.all %}
-
-                <li class="menu-item
-                    {% if page.pagename in request.path %}
-                       active
-                    {% endif %}
-                    ">
+                <li class="menu-item {% if page.pagename in request.path %} active {% endif %}">
                   <a href="{% url 'content' page.pagename %}" class="menu-link">
                     <div data-i18n="">{{ page.menuname }}</div>
                   </a>

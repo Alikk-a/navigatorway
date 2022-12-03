@@ -1,16 +1,8 @@
 <!DOCTYPE html>
 {% load static %}
-<html
-  lang="ru"
-  class="light-style layout-menu-fixed"
-  dir="ltr"
-  data-theme="theme-default"
-  data-template="vertical-menu-template-free"
->
+<html lang="ru">
   <head>
-<!--            ЗАКРЫТИЕ ОТ ИНДЕКСАЦИИ - УБРАТЬ ПОТОМ           -->
-<meta name="robots" content="noindex, nofollow"/>
-
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}" />
 
     <meta charset="utf-8" />
     <meta
@@ -18,6 +10,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
     <meta name="author" content="Альберт Катасонов">
+    <meta name="yandex-verification" content="1b7644d45f010815" />
     {% if request.path == '/mail_arh' %}
         <title>Ответы на вопросы</title>
         <meta name="description" content="Ответы на вопросы читателей в рамках бесплатного консультирования" />
@@ -36,7 +29,6 @@
             проблема выбора, планирование жизни, самомотивация, обучающий курс, комфорт, свое дело, самодостаточность" />
         {% endfor %}
     {% endif %}    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="{% static 'assets/img/favicon/favicon.ico' %}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -67,6 +59,38 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="{% static 'assets/js/config.js' %}"></script>
+    <!-- Yandex.Metrika informer -->
+<!--    <a href="https://metrika.yandex.ru/stat/?id=12265939&amp;from=informer"-->
+<!--    target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/12265939/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"-->
+<!--    style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" class="ym-advanced-informer" data-cid="12265939" data-lang="ru" /></a>-->
+    <!-- /Yandex.Metrika informer -->
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+       (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+       m[i].l=1*new Date();
+       for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+       k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+       (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+       ym(12265939, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+       });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/12265939" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WCSP46RJ7C"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-WCSP46RJ7C');
+    </script>
   </head>
 
   <body>
@@ -79,9 +103,11 @@
           <div class="app-brand demo">
             <a href="{% url 'home' %}" class="app-brand-link">
               <span class="app-brand-logo demo">
-                <img src = "{% static 'logo_navi.png' %}" width="47">
+<!--                <img src = "{% static 'logo_navi.png' %}" width="47">-->
               </span>
-              <span class="app-brand-text demo menu-text ms-3">навигация</span>
+              <span class="app-brand-text demo menu-text ms-3">
+                <div align="center"><img src = "{% static 'logo_navi.png' %}" width="47"></div>
+              </span>
             </a>
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
@@ -139,7 +165,7 @@
               {% endfor %}
 
             <li class="menu-item
-                    {% if request.path == '/tehtarget' %}
+                    {% if request.path == '/tehtarget/' %}
                        active
                     {% endif %}
                     ">
@@ -149,7 +175,7 @@
               </a>
             </li>
             <li class="menu-item
-                    {% if request.path == '/cources' %}
+                    {% if request.path == '/cources/' %}
                        active
                     {% endif %}
                     ">
@@ -263,8 +289,8 @@
 
               .btn-up::before {
                 content: "";
-                width: 40px;
-                height: 40px;
+                width: 35px;
+                height: 35px;
                 background: transparent no-repeat center center;
                 background-size: 100% 100%;
                 background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23fff' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M7.646 4.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 5.707l-5.646 5.647a.5.5 0 0 1-.708-.708l6-6z'/%3E%3C/svg%3E");

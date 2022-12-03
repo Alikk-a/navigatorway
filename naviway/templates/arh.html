@@ -6,40 +6,35 @@
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
-              <h3 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><b>Ответы на вопросы читателей</b></span></h3>
-                <div class="col-md-12 mb-4">
-                  <div class="card">
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <h2 class="card-header">Ответы на вопросы читателей</h2>
                     <div class="card-body">
                         <div class="divider-text">
-                            <p>В этом разделе вы можете ознакомиться с ответами автора на вопросы читателей в рамках бесплатного публичного мини-консультирования.</p>
-                            <p>Тематика вопросов - любая. От серьезных вопросов, связанных с индивидуальными заботами и до откровенных
+                            <p>В этом разделе вы можете ознакомиться с ответами автора на вопросы читателей в рамках
+                                бесплатного публичного мини-консультирования.</p>
+                            <p>Тематика вопросов - любая. От серьезных вопросов, связанных с индивидуальными заботами и
+                                до откровенных
                                 провокаций в сторону автора или ругани в его адрес</p>
-                            <p>Автор всегда исповедовал некий принцип - спрашивать можно все. И все должно быть отвечено и опубликовано.
-                                Однако ответ совсем не обязан быть таким, как желает спрашиватель. "Будь готов!", как говорится.</p>
+                            <p>Автор всегда исповедовал некий принцип - спрашивать можно все. И все должно быть отвечено
+                                и опубликовано.
+                                Однако ответ совсем не обязан быть таким, как желает спрашиватель. "Будь готов!", как
+                                говорится.</p>
                         </div>
-                    </div>
-                  </div>
-                </div>
-
-            <div class="col-md-12 mb-4">
-                <h6 class="fw-bold py-3 mb-4"><span class="text-muted fw-light"><b>
-                    <ul>
-                        <li><a href="#" onclick="history.back();">Вернуться назад</a></li>
-                    </ul>
-                </b></span></h6>
-                <div class="card">
-                    <div class="card-body">
+                        <hr>
                         {% for page in pages.all %}
-                            <div class="divider-text">
-                                <a href="{% url 'content' page.pagename %}" class="menu-link">{{ page.pagetitle }}</a>
-                            </div>
-                            <script>
+                        <div class="divider-text">
+                            <a href="{% url 'content' page.pagename %}" class="menu-link">{{ page.pagetitle }}</a>
+                        </div>
+                        <script>
                               document.addEventListener("DOMContentLoaded", () => {
                                   var ob = document.getElementById({{ page.pageparid }});
                                   ob.classList.add("open");
                                   ob.classList.add("active");
                               });
-                            </script>
+
+
+                        </script>
                         {% endfor %}
                     </div>
                 </div>

@@ -1,0 +1,33 @@
+{% extends 'base-cont.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Content -->
+<div class="content-wrapper">
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <h2 class="card-header">Логин</h2>
+                    <div class="card-body">
+
+                        <div class="divider-text">
+                            <form method="post">
+                              {% csrf_token %}
+                              <table>
+                                {{ form.as_p }}
+                                <tr>
+                                  <td>&nbsp;</td>
+                                  <td><input type="submit" value="Submit"></td>
+                                </tr>
+                              </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- / Content -->
+{% endblock %}
