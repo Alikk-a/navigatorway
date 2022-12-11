@@ -226,6 +226,28 @@
                 </li>
               {% endfor %}
           {% endif %}
+          {% if request.user.is_authenticated %}
+            <li class="menu-item">
+              <a href="{% url 'login' %}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-crown"></i>
+                <div data-i18n="">Login</div>
+              </a>
+            </li>
+            <li class="menu-item">
+              <a href="{% url 'logout' %}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-crown"></i>
+                <div data-i18n="">Logout</div>
+              </a>
+            </li>
+            {% if request.user.is_staff %}
+            <li class="menu-item">
+              <a href="{% url 'registr' %}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-crown"></i>
+                <div data-i18n="">регистрация</div>
+              </a>
+            </li>
+            {% endif %}
+          {% endif %}
           </ul>
         </aside>
         <!-- / Menu -->

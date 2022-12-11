@@ -6,7 +6,7 @@ import requests
 
 # Подключение стандартной формы для регистрации
 from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth.decorators import login_required
 
 # from asgiref.sync import sync_to_async
 # import psycopg2
@@ -35,7 +35,6 @@ def home(request):
     return render(request, 'content.html',
                   {'pages': pages, 'menus1': menus1, 'menus2': menus2, 'menus3': menus3, 'menus4': menus4,
                    'menus5': menus5})
-
 
 def arh(request):
     pages = Page.objects.filter(pageparid=89).order_by('menuname')
@@ -107,7 +106,7 @@ def tehnik_one(request, id_texnik):
                   {'tehnik': tehnik, 'menus1': menus1, 'menus2': menus2, 'menus3': menus3, 'menus4': menus4,
                    'menus5': menus5})
 
-
+@login_required  # так закрывается представление для неавторизованных / так же можно и - через if request.user.is_authenticated
 def cardbasic(request):
     menus1, menus2, menus3, menus4, menus5 = blockMenu()
     return render(request, 'cards-basic.html',

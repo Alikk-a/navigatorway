@@ -21,7 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-              path('admin/', admin.site.urls),
+              path('admin/', admin.site.urls, name='admin'),
               path('accounts/', include('django.contrib.auth.urls')),
               path('', include('naviway.urls')),
               path('__debug__/', include('debug_toolbar.urls')),

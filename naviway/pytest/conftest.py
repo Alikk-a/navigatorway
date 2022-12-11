@@ -32,9 +32,9 @@ def print_hello():
 # нижняя часть выводит название теста
 @pytest.fixture(autouse=True)  # autouse=True - подключает фикстуру во все тесты
 def print_auto(request):
-    print("\nAuto")
+    print("\n фикстура с автозапуском Старт")
     yield
-    print(f'call from {request.function.__name__}')
+    print(f'\n call test {request.function.__name__} - после теста')
 
 """
 фикстуры для проверки создания и входа пользователя, но у мну не работают, ибо нет функционала авторизации

@@ -70,7 +70,7 @@ def test_defaults():
     assert t1 == t2
 
 
-""" декоратор ниже - это маркер, можно запускать выборочно тесты, но нужно регистрировать маркеры, иначе выдает предупреждения (но все арвно работает)"""
+""" декоратор ниже - это маркер, можно запускать выборочно тесты, но нужно регистрировать маркеры, иначе выдает предупреждения (но все равно работает)"""
 
 
 # @pytest.mark.run_these_please
@@ -102,8 +102,3 @@ class TestSomething:
         t_expected = Task('finish book', 'brian', True, 10)
         assert t_after == t_expected
 
-
-# @pytest.mark.django_db
-# def test_my_user():
-#     me = User.objects.get(username='Ali')
-#     assert me.is_superuser
