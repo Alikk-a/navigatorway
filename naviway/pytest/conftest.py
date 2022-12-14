@@ -2,6 +2,13 @@ import pytest
 from collections import namedtuple
 from django.contrib.auth import get_user_model
 
+from pytest_factoryboy import register
+from .factories import UserFactory
+
+
+register(UserFactory)  # имя фикстуры будет в snakecase виде: user_factory
+
+
 Person = namedtuple('Person', 'name age')
 
 persons = [
@@ -62,7 +69,7 @@ def create_test_user(user_data):
 Тестовые классы должны быть названы Test<Something>
 
 запуск конкретного теста в конкретном файле. можно указывать несколько файлов/каталогов/тестов через пробел
-pytest navigator/pytest/tasks_test.py::test_member_access metriktrd_project/pytest/task_test.py::test_asdict
+pytest navigator/pytest/t_test.py::test_member_access metriktrd_project/pytest/t_test.py::test_asdict
 опции
 --collect-only только собирать тесты, не выполнять их. ПОКАЗЫВАЕТ список всех тестов
 

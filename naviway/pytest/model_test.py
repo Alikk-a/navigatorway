@@ -8,7 +8,7 @@ import pytest
 def test_check_navi():
     assert check_navi() == 200
 
-
+# test write and read from all models
 test_param = [
     (Cursce, 'name_cource', 'test_Cource'),
     (Targ, 'cel_texniki', 'test_Targ'),
@@ -27,7 +27,7 @@ def test_check_model(model_name, filt, expected):
     print('Грузим: ' + str(expected) + '  Палучаем: ' + str(get_from_db[0].fortest()) + '  тип грузимого - ' + str(type(expected)))
     assert get_from_db[0] == crt_to_db
 
-
+# test additional methods - model Texniki
 test_param_dop = [
     (Texniki, 'age', 'preschool'),
 ]
