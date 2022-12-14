@@ -88,9 +88,9 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'navigatorway',  # agroup_metrik
-        'USER': 'postgres',  # agroup_adm
-        'PASSWORD': 'admin958',  # Cn8AS#MpEDou
+        'NAME': 'navigatorway',
+        'USER': 'postgres',
+        'PASSWORD': 'admin958',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

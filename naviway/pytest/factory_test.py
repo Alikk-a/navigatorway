@@ -7,3 +7,5 @@ def test_user_user_factory(user_factory):
    assert user.email == 'JohnDoe_0@mail.com'
    assert user.check_password('pass')
    assert user.groups.count() == 1
+
+
