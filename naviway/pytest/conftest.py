@@ -69,7 +69,7 @@ def create_test_user(user_data):
 Тестовые классы должны быть названы Test<Something>
 
 запуск конкретного теста в конкретном файле. можно указывать несколько файлов/каталогов/тестов через пробел
-pytest navigator/pytest/t_test.py::test_member_access metriktrd_project/pytest/t_test.py::test_asdict
+pytest navigator/pytest/t_test.py::test_member_access etriktrd_project/pytest/t_test.py::test_asdict
 опции
 --collect-only только собирать тесты, не выполнять их. ПОКАЗЫВАЕТ список всех тестов
 

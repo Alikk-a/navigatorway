@@ -86,7 +86,7 @@ def test_asdict(person):
 @pytest.mark.usefixtures('print_hello')  # параметр здесь - фикстура для всего класса
 class TestSomething:
     def test_member_access(self,
-                           data_1):  # в параметрах указаны фикстуры, которые выполняются ДО - они в файле conftest.py (нахоит файл в этом каталоге и ПОДкаталогах автоматически
+                           data_1):  # в параметрах указаны фикстуры, которые выполняются ДО - они в файле conftest.py
         """Проверка свойства .field (поля) namedtuple."""
         t = Task('buy milk', 'brian')
         assert t.summary == 'buy milk'
