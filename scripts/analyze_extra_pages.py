@@ -10,9 +10,12 @@ django.setup()
 from django.urls import reverse
 
 from naviway.models import Page
-from naviway.views import CONTACT_PAGENAMES, blockMenu
+from naviway.views import blockMenu
 
 ARCHIVE_PARID = 100
+CONTACT_PAGENAMES = {
+    "contact", "bonus", "autor", "consult", "maillist", "pravila_mail",
+}
 
 # Production homepage menu (2026-09-27 scrape).
 PROD_MENU_HREFS = {

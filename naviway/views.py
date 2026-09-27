@@ -1,7 +1,7 @@
 from django.http import Http404
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 # from django.db.models import Sum, Avg, Count, Max, Min, ExpressionWrapper
-from .models import Page, Texniki, Targetteh, Podhod, Targ, Cursceteh, Cursce
+from .models import Page, Texniki, Targetteh, Targ, Cursceteh, Cursce
 
 # pageparid=100 — «не рабочие» страницы (admin); не в меню и не по прямому URL.
 ARCHIVE_PARID = 100
@@ -11,10 +11,6 @@ MENU_PRACTICE_PARID = 7
 MENU_MISC_PARID = 11
 MENU_TOP_PARID = 3
 MENU_CONTACT_PARID = 13
-
-CONTACT_PAGENAMES = {
-    'contact', 'bonus', 'autor', 'consult', 'maillist', 'pravila_mail',
-}
 
 
 def visible_pages():

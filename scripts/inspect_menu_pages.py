@@ -5,7 +5,10 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "navigatorway.settings")
 django.setup()
 
 from naviway.models import Page
-from naviway.views import CONTACT_PAGENAMES
+
+CONTACT_PAGENAMES = {
+    "contact", "bonus", "autor", "consult", "maillist", "pravila_mail",
+}
 
 for p in Page.objects.filter(pagename__in=CONTACT_PAGENAMES).values(
     "pageid", "pageparid", "pagename", "menuname"
