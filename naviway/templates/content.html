@@ -27,7 +27,14 @@
         </div>
         <script>
               document.addEventListener("DOMContentLoaded", () => {
-                  var ob = document.getElementById({{ page.pageparid }});
+                  var menuId = {{ page.pageparid|default:0 }};
+                  if (!menuId) {
+                    return;
+                  }
+                  var ob = document.getElementById(String(menuId));
+                  if (!ob) {
+                    return;
+                  }
                   ob.classList.add("open");
                   ob.classList.add("active");
               });

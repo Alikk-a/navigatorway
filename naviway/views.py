@@ -1,6 +1,24 @@
+from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 # from django.db.models import Sum, Avg, Count, Max, Min, ExpressionWrapper
 from .models import Page, Texniki, Targetteh, Podhod, Targ, Cursceteh, Cursce
+
+# pageparid=100 — «не рабочие» страницы (admin); не в меню и не по прямому URL.
+ARCHIVE_PARID = 100
+
+MENU_THEORY_PARID = 5
+MENU_PRACTICE_PARID = 7
+MENU_MISC_PARID = 11
+MENU_TOP_PARID = 3
+MENU_CONTACT_PARID = 13
+
+CONTACT_PAGENAMES = {
+    'contact', 'bonus', 'autor', 'consult', 'maillist', 'pravila_mail',
+}
+
+
+def visible_pages():
+    return Page.objects.exclude(pageparid=ARCHIVE_PARID)
 # from django.db.models.functions import TruncDay, TruncHour
 import requests
 
@@ -20,17 +38,19 @@ def check_navi():
     return response.status_code
 
 def blockMenu():
-    # menusall = Page.objects.filter(pageparid__in=[5, 7, 11, 13, 3]).order_by('sort')
-    menus1 = Page.objects.filter(pageparid=5).values('pagename', 'menuname', 'sort').order_by('sort')
-    menus2 = Page.objects.filter(pageparid=7).values('pagename', 'menuname', 'sort').order_by('sort')
-    menus3 = Page.objects.filter(pageparid=11).values('pagename', 'menuname', 'sort').order_by('sort')
-    menus4 = Page.objects.filter(pageparid=13).values('pagename', 'menuname', 'sort').order_by('sort')
-    menus5 = Page.objects.filter(pageparid=3).values('pagename', 'menuname', 'sort').order_by('sort')
+    pages = visible_pages()
+    menus1 = pages.filter(pageparid=MENU_THEORY_PARID).order_by('sort', 'pagename')
+    menus2 = pages.filter(pageparid=MENU_PRACTICE_PARID).order_by('sort', 'pagename')
+    menus3 = pages.filter(pageparid=MENU_MISC_PARID).order_by('sort', 'pagename')
+    menus4 = pages.filter(pageparid=MENU_CONTACT_PARID).order_by('sort', 'pagename')
+    menus5 = pages.filter(pageparid=MENU_TOP_PARID).order_by('sort', 'pageid')
     return menus1, menus2, menus3, menus4, menus5
 
 
 def home(request):
     pages = Page.objects.filter(pagename='main')
+    if not pages.exists():
+        pages = Page.objects.filter(pagename='index', pageparid=0)
     menus1, menus2, menus3, menus4, menus5 = blockMenu()
     return render(request, 'content.html',
                   {'pages': pages, 'menus1': menus1, 'menus2': menus2, 'menus3': menus3, 'menus4': menus4,
@@ -45,7 +65,9 @@ def arh(request):
 
 
 def content(request, pageurl):
-    pages = Page.objects.filter(pagename=pageurl)
+    pages = visible_pages().filter(pagename=pageurl)
+    if not pages.exists():
+        raise Http404()
     menus1, menus2, menus3, menus4, menus5 = blockMenu()
     menus6 = Page.objects.filter(pageparid=42).order_by('sort')
     menus7 = Page.objects.filter(pageparid=52).order_by('sort')

@@ -136,7 +136,7 @@
                     {% endif %}">
                   <a href="{% url 'content' page.pagename %}" class="menu-link">
                     <i class="menu-icon tf-icons bx {% cycle 'bxs-graduation' 'bxs-book' 'bxs-key' %}"></i>
-                    <div data-i18n="">{{ page.menuname }}</div>
+                    <div data-i18n="">{% firstof page.menuname page.pagetitle page.pagename %}</div>
                   </a>
                 </li>
               {% endfor %}
@@ -151,6 +151,36 @@
                 {% include 'includes/menu_123.html' %}
               </ul>
             </li>
+            <li id="7" class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bxs-wrench"></i>
+                <div data-i18n="praktic">Практика Пути</div>
+              </a>
+              <ul class="menu-sub">
+              {% for page in menus2 %}
+                <li class="menu-item {% if page.pagename in request.path %} active {% endif %}">
+                  <a href="{% url 'content' page.pagename %}" class="menu-link">
+                    <div data-i18n="">{% firstof page.menuname page.pagetitle page.pagename %}</div>
+                  </a>
+                </li>
+              {% endfor %}
+              </ul>
+            </li>
+            <li id="11" class="menu-item">
+              <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bxs-magnet"></i>
+                <div data-i18n="different">Всячина</div>
+              </a>
+              <ul class="menu-sub">
+              {% for page in menus3.all %}
+                <li class="menu-item {% if page.pagename in request.path %} active {% endif %}">
+                  <a href="{% url 'content' page.pagename %}" class="menu-link">
+                    <div data-i18n="">{% firstof page.menuname page.pagetitle page.pagename %}</div>
+                  </a>
+                </li>
+              {% endfor %}
+              </ul>
+            </li>
               <!-- меню Контакты-->
               {% for page in menus4.all %}
                 <li class="menu-item
@@ -159,7 +189,7 @@
                     {% endif %}">
                   <a href="{% url 'content' page.pagename %}" class="menu-link">
                     <i class="menu-icon tf-icons bx {% cycle 'bx-mail-send' 'bx-pyramid' %}"></i>
-                    <div data-i18n="">{{ page.menuname }}</div>
+                    <div data-i18n="">{% firstof page.menuname page.pagetitle page.pagename %}</div>
                   </a>
                 </li>
               {% endfor %}
@@ -200,7 +230,7 @@
                     {% endif %}
                     ">
                   <a href="{% url 'content' page.pagename %}" class="menu-link">
-                    <div data-i18n="">{{ page.menuname }}</div>
+                    <div data-i18n="">{% firstof page.menuname page.pagetitle page.pagename %}</div>
                   </a>
                 </li>
               {% endfor %}
@@ -221,7 +251,7 @@
                     {% endif %}
                     ">
                   <a href="{% url 'content' page.pagename %}" class="menu-link">
-                    <div data-i18n="">{{ page.menuname }}</div>
+                    <div data-i18n="">{% firstof page.menuname page.pagetitle page.pagename %}</div>
                   </a>
                 </li>
               {% endfor %}

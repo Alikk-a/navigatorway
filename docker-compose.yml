@@ -1,0 +1,13 @@
+# Only for importing navigator_dump.sql (MariaDB/phpMyAdmin format).
+# Django uses your local PostgreSQL — see .env.example POSTGRES_*.
+services:
+  mysql_legacy:
+    image: mariadb:10.6
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: navigator_21
+    ports:
+      - "3307:3306"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
