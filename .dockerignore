@@ -1,0 +1,12 @@
+.git
+.github
+.env
+.venv
+venv
+__pycache__
+*.py[cod]
+.pytest_cache
+dump.sql
+staticfiles
+*.md
+.cursor
