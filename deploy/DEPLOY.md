@@ -31,10 +31,12 @@ git checkout main   # или актуальная ветка по умолчан
 
 ```bash
 cp .env.production.example .env
-nano .env   # секреты, пароль БД, домены
+sed -i 's/\r$//' .env   # если файл редактировали в Windows
+nano .env   # секреты, пароль БД, Tailscale IP, домены
 ```
 
-Обязательно задайте `DJANGO_SECRET_KEY` и `POSTGRES_PASSWORD`.
+Обязательно задайте `DJANGO_SECRET_KEY` и `POSTGRES_PASSWORD`.  
+Подставьте **Tailscale IP** сервера в `DJANGO_ALLOWED_HOSTS` и в `CSRF_TRUSTED_ORIGINS` (с портом `NGINX_PUBLISH_PORT`, по умолчанию **8088**).
 
 ## 3. Сборка образов
 
@@ -112,7 +114,18 @@ rsync -avz user@old-host:/path/to/media/ ./media/
 docker compose -f docker-compose.prod.yml up -d
 ```
 
-Сайт на порту **80** хоста. Сервис `web` (Gunicorn) снаружи не публикуется.
+Nginx публикуется на хосте как **`${NGINX_PUBLISH_PORT:-8088}`** → контейнер `:80` (см. `.env`).  
+Сервис `web` (Gunicorn) снаружи не публикуется.
+
+### Доступ до переноса DNS
+
+- **Tailscale:** `http://<tailscale-ip>:8088/` (порт из `NGINX_PUBLISH_PORT`).
+- На сервере с **Traefik/Dokploy** на `:80` не пробрасывайте этот nginx на 80 — будет конфликт.
+
+### Cloudflare Tunnel
+
+В панели Cloudflare укажите origin на этот хост и порт, например `http://127.0.0.1:8088` (или IP сервера в tailnet).  
+Когда домен пойдёт через туннель с HTTPS, оставьте `DJANGO_BEHIND_PROXY=1` и добавьте `https://ваш-домен` в `CSRF_TRUSTED_ORIGINS` и домен в `DJANGO_ALLOWED_HOSTS`.
 
 ## 9. Проверки
 
@@ -138,15 +151,13 @@ docker compose -f docker-compose.prod.yml run --rm web python manage.py migrate 
 docker compose -f docker-compose.prod.yml run --rm web python manage.py migrate
 ```
 
-## HTTPS (вручную)
+## HTTPS
 
-В репозитории только HTTP (`listen 80`). Типичный вариант на сервере:
+По умолчанию nginx в контейнере отдаёт только HTTP на внутреннем `:80`; снаружи — выбранный порт (8088).
 
-1. Certbot на хосте или в отдельном контейнере.
-2. Сертификаты в volume, в nginx добавить `listen 443 ssl` и пути к `fullchain.pem` / `privkey.pem`.
-3. В `.env`: `DJANGO_BEHIND_PROXY=1`, `CSRF_TRUSTED_ORIGINS=https://ваш-домен`.
+**Рекомендуемый вариант:** TLS на **Cloudflare Tunnel** (или Cloudflare proxy), origin → `http://127.0.0.1:8088`.
 
-Автоматическое обновление сертификатов (cron) настраивается на сервере, не в git.
+Альтернатива без Cloudflare: certbot на хосте + отдельный reverse-proxy (не занимать `:80`, если там Traefik).
 
 ## Суперпользователь Django
 
